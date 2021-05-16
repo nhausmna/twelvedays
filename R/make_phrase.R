@@ -19,11 +19,10 @@
 
 
 make_phrase <- function(num, num_word, item, verb, adjective, location){
-
-  verb <- str_replace_na(verb, "")
-
-  #????
-
-
+  if(!is.na(verb))
+    return(glue("{num_word} {item} {verb}"))
+  if(!is.na(adjective))
+    return(glue("{num_word} {adjective} {item}"))
+  return(glue("{num_word} {item} {location}"))
 }
 
