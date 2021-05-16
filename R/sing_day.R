@@ -19,8 +19,17 @@ sing_day <- function(dataset, line, phrase_col){
   dayname <- dataset$Day.in.Words[line]
   toRet <- glue("On the {dayname} day of Christmas, my true love sent to me,")
   #????
-  get_line <- function(line){
-    return (phrases[line])
+  if(line ==1){
+    get_line <- function(line){
+      return (phrases[line])
+    }
+  }
+  else{
+    get_line <- function(line){
+      if(line == 1)
+        return(paste("and", phrases[line]))
+      return (phrases[line])
+    }
   }
   after_comma <- paste(rev(map_chr(1:line, get_line)), collapse=',\n' )
   return(paste(toRet, after_comma, sep = '\n'))

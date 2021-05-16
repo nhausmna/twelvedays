@@ -20,7 +20,7 @@
 
 make_phrase <- function(num, num_word, item, verb, adjective, location){
   if(num == 1)
-    return(glue("And a {item} {location}"))
+    return(glue("a {item} {location}."))
   item <- pluralize_gift(item)
   if(!is.na(verb))
     return(glue("{num_word} {item} {verb}"))
