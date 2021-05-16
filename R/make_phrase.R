@@ -19,6 +19,8 @@
 
 
 make_phrase <- function(num, num_word, item, verb, adjective, location){
+  if(num == 1)
+    return(glue("And a {item} {location}"))
   if(!is.na(verb))
     return(glue("{num_word} {item} {verb}"))
   if(!is.na(adjective))
