@@ -1,0 +1,34 @@
+---
+title: "testing"
+output: html_document
+---
+https://github.com/nhausmna/twelvedays
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(twelvedays)
+library(stringr)
+library(dplyr)
+library(glue)
+library(purrr)
+remotes::install_github("nhausmna/twelvedays", force=TRUE)
+xmas2 <- read.csv("https://www.dropbox.com/s/ap2hqssese1ki4j/xmas_2.csv?dl=1")
+```
+
+```{r}
+xmas2_ <- xmas2 %>%
+  mutate(number_strings = c('one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'))
+xmas2_ <- xmas2_ %>%  
+  mutate(
+    Full.Phrase = pmap_chr(xmas2_, ~make_phrase(..1, 
+                                              ..7, 
+                                              ..3, 
+                                              ..4, 
+                                              ..5, 
+                                              ..6))
+  )
+cat(map_chr(1:12, ~sing_day(xmas2_, .x, Full.Phrase)), sep='\n\n')
+```
+
